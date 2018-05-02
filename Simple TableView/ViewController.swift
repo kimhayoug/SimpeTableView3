@@ -38,7 +38,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print(animals[indexPath.row])
         print(year[indexPath.row])
         
-        let myAlert = UIAlertController(title: "동물들",message: "동물에대해 알아보자",preferredStyle: .actionSheet)
+        let myAlert = UIAlertController(title: "동물들",message: "동물에대해 알아보자",preferredStyle: .alert)
+        
+        let section = UIAlertAction(title: ("section = \(indexPath.section) row = \(indexPath.row)"), style: .default) { (action: UIAlertAction) -> Void in
+            self.view.backgroundColor = UIColor.red
+        }
         
         let ok = UIAlertAction(title: "확인", style: .default) { (action: UIAlertAction) -> Void in
             self.view.backgroundColor = UIColor.red
@@ -49,7 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
         
         let testAction = UIAlertAction(title: "취소", style: .default, handler:  nil)
-        
+        myAlert.addAction(section)
         myAlert.addAction(ok)
         myAlert.addAction(cancelAction)
         myAlert.addAction(testAction)
@@ -59,6 +63,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  100
     }
+    func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "1번째 공간"
+        }else{
+            return"2번째 공간"
+            
+        }
+        }
+    }
+
 
 
